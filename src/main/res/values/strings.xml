@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Rubel Group</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Rubel Group</string>
+    <string name="nav_header_subtitle">rubelgroup.com.bd</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_worker_report">Worker Report</string>
+
+
+    <string name="header_col1">Date</string>
+    <string name="header_col2">Workers Number</string>
+    <string name="header_col3">Passport Name</string>
+    <string name="header_col4">Passport Number</string>
+    <string name="header_col5">Visa Number</string>
+    <string name="header_col6">Occupation</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="title_activity_amit_processing">AmitProcessing</string>
+</resources>
