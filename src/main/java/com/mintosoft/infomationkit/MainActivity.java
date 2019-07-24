@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mintosoft.infomationkit.api.BaseApiService;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity
     JSONObject jsonRESULTS;
     Call<ResponseBody> call;
     Response<ResponseBody> testresponse;
-    LinearLayout l1,l2,l3,l4;
+    LinearLayout l1,l2,l3,l4,l5,l6;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +48,14 @@ public class MainActivity extends AppCompatActivity
         mApiService = UtilsApi.getAPIService();
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, 0);
         final String restoredText = "Bearer " + prefs.getString("access_token", null);
-        //setData(restoredText);
+
 
         l1 = (LinearLayout)findViewById(R.id.amit_p);
         l2 = (LinearLayout)findViewById(R.id.amit_r);
         l3 = (LinearLayout)findViewById(R.id.rubel_p);
         l4 = (LinearLayout)findViewById(R.id.rubel_r);
+        l5 = (LinearLayout)findViewById(R.id.receive);
+        l6 = (LinearLayout)findViewById(R.id.invoice);
         l1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,19 +66,33 @@ public class MainActivity extends AppCompatActivity
         l2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,AmitProcessing.class));
+                startActivity(new Intent(MainActivity.this,AmirRecruiting.class));
             }
         });
         l3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,AmitProcessing.class));
+                startActivity(new Intent(MainActivity.this,RubelProcessing.class));
             }
         });
         l4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,AmitProcessing.class));
+                startActivity(new Intent(MainActivity.this,RubelRecruiting.class));
+            }
+        });
+        l5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendData("receives");
+                //startActivity(new Intent(MainActivity.this,Received.class));
+            }
+        });
+        l6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendData("invoices");
+                //startActivity(new Intent(MainActivity.this,Invoiced.class));
             }
         });
         call = mApiService.getLoginResponse(restoredText);
@@ -86,7 +103,19 @@ public class MainActivity extends AppCompatActivity
                 if (response.isSuccessful()) {
                     testresponse = response;
                     try {
-                        jsonRESULTS = new JSONObject(testresponse.body().string());
+                        jsonRESULTS = new JSONObject(testresponse.body().string());//
+
+                        String total_receive = jsonRESULTS.getString("total_receive");
+                        TextView tv_total_receive = findViewById(R.id.total_receive);
+                        tv_total_receive.setText("Total Paid  : " + total_receive);
+
+                        String total_invoice = jsonRESULTS.getString("total_invoice");
+                        TextView tv_total_invoice = findViewById(R.id.total_invoice);
+                        tv_total_invoice.setText("Total Invoice  : " + total_invoice);
+
+                        TextView tv_due = findViewById(R.id.total_due);
+                        int due = Integer.parseInt(total_invoice)-Integer.parseInt(total_receive);
+                        tv_due.setText("Total Due : " +due);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
@@ -112,89 +141,33 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+    public void sendData(String url) {
 
-//    public void onClick(View view) {
-//        switch (view.getId()) {
-//            case R.id.rcardview:
-//                sendData("rbl_p_okalawaiting");
-//                break;
-//            case R.id.rcardview1:
-//                sendData("rbl_p_okala");
-//                break;
-//            case R.id.rcardview2:
-//                sendData("rbl_p_visa");
-//                break;
-//            case R.id.rcardview3:
-//                sendData("rbl_p_manpower");
-//                break;
-//            case R.id.rcardview4:
-//                sendData("rbl_p_delivery");
-//                break;
-//            case R.id.rcardview5:
-//                //sendData("rbl_p_invoice");
-//                break;
-//
-//
-//            case R.id.rrcardview:
-//                sendData("rbl_r_okalawaiting");
-//                break;
-//            case R.id.rrcardview1:
-//                sendData("rbl_r_okala");
-//                break;
-//            case R.id.rrcardview2:
-//                sendData("rbl_r_visa");
-//                break;
-//            case R.id.rrcardview3:
-//                sendData("rbl_r_manpower");
-//                break;
-//            case R.id.rrcardview4:
-//                sendData("rbl_r_delivery");
-//                break;
-//            case R.id.rrcardview5:
-//                //sendData("rbl_p_invoice");
-//                break;
-//
-//
-//            case R.id.acardview:
-//                sendData("amir_p_okalawaiting");
-//                break;
-//            case R.id.acardview1:
-//                sendData("amir_p_okala");
-//                break;
-//            case R.id.acardview2:
-//                sendData("amir_p_visa");
-//                break;
-//            case R.id.acardview3:
-//                sendData("amir_p_manpower");
-//                break;
-//            case R.id.acardview4:
-//                sendData("amir_p_delivery");
-//                break;
-//            case R.id.acardview5:
-//                //sendData("rbl_p_invoice");
-//                break;
-//
-//
-//            case R.id.arcardview:
-//                sendData("amir_r_okalawaiting");
-//                break;
-//            case R.id.arcardview1:
-//                sendData("amir_r_okala");
-//                break;
-//            case R.id.arcardview2:
-//                sendData("amir_r_visa");
-//                break;
-//            case R.id.arcardview3:
-//                sendData("amir_r_manpower");
-//                break;
-//            case R.id.arcardview4:
-//                sendData("amir_r_delivery");
-//                break;
-//            case R.id.arcardview5:
-//                //sendData("rbl_p_invoice");
-//                break;
-//        }
-//    }
+        try {
+            JSONArray jo2 = jsonRESULTS.getJSONArray(url);
+
+            if (jo2 != null) {
+                String[][] DATA_TO_SHOW = new String[jo2.length()][3];
+                for (int i = 0; i < jo2.length(); i++) {
+                    JSONObject jsonobject = jo2.getJSONObject(i);
+                    DATA_TO_SHOW[i][0] = jsonobject.getString("amount");
+                    DATA_TO_SHOW[i][2] = jsonobject.getString("created_at");
+                    String note = "N/A";
+                    if (jsonobject.getString("note") != null)
+                        note = jsonobject.getString("note");
+                    DATA_TO_SHOW[i][1] = note;
+                }
+
+                Intent i = new Intent(MainActivity.this, Received.class);
+                Bundle mBundle = new Bundle();
+                mBundle.putSerializable("list", DATA_TO_SHOW);
+                i.putExtras(mBundle);
+                startActivity(i);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
 //    private void setData(String restoredText) {
 //
@@ -331,33 +304,6 @@ public class MainActivity extends AppCompatActivity
 //        });
 //    }
 
-    public void sendData(final String url) {
-
-        try {
-            JSONArray jo2 = jsonRESULTS.getJSONArray(url);
-            String[][] DATA_TO_SHOW = new String[jo2.length()][6];
-            for (int i = 0; i < jo2.length(); i++) {
-                JSONObject jsonobject = jo2.getJSONObject(i);
-                DATA_TO_SHOW[i][0] = jsonobject.getString("created_at");
-                DATA_TO_SHOW[i][1] = jsonobject.getString("worker_number");
-                DATA_TO_SHOW[i][2] = jsonobject.getString("passport_name");
-                DATA_TO_SHOW[i][3] = jsonobject.getString("passport_number");
-                DATA_TO_SHOW[i][4] = jsonobject.getString("visa_number");
-                String occupation = "N/A";
-                if (jsonobject.getString("occupation") != null)
-                    occupation = jsonobject.getString("occupation");
-                DATA_TO_SHOW[i][5] = occupation;
-            }
-
-            Intent i = new Intent(MainActivity.this, WorkerReport.class);
-            Bundle mBundle = new Bundle();
-            mBundle.putSerializable("list", DATA_TO_SHOW);
-            i.putExtras(mBundle);
-            startActivity(i);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void onBackPressed() {

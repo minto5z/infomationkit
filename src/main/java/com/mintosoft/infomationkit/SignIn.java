@@ -25,7 +25,7 @@ import retrofit2.Response;
 
 public class SignIn extends Activity {
 
-    TextView em, ps, signin;
+    TextView em, ps, signin,signup;
     String email, password;
     Context mContext;
     //SessionManager session;
@@ -41,6 +41,13 @@ public class SignIn extends Activity {
         em = findViewById(R.id.email);
         ps = findViewById(R.id.password);
         signin = findViewById(R.id.login);
+        signup = findViewById(R.id.signup);
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignIn.this,SignUp.class));
+            }
+        });
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         if (settings.getString("logged", "").toString().equals("logged")) {
             Intent intent = new Intent(SignIn.this, MainActivity.class);

@@ -12,9 +12,16 @@
     <string name="header_col1">Date</string>
     <string name="header_col2">Workers Number</string>
     <string name="header_col3">Passport Name</string>
-    <string name="header_col4">Passport Number</string>
-    <string name="header_col5">Visa Number</string>
-    <string name="header_col6">Occupation</string>
+    <string name="header_col4">Amount</string>
+    <string name="header_col5">Note</string>
+    <string name="header_col6">Date</string>
     <string name="title_activity_profile">Profile</string>
-    <string name="title_activity_amit_processing">AmitProcessing</string>
+    <string name="title_activity_amit_processing">Amir Processing</string>
+    <string name="title_activity_worker_details">WorkerDetails</string>
+    <string name="ok">Ok</string>
+    <string name="title_activity_amir_recruiting">Amir Recruiting</string>
+    <string name="title_activity_rubel_processing">Rubel Processing</string>
+    <string name="title_activity_rubel_recruiting">Rubel Recruiting</string>
+    <string name="title_activity_received">Amount Details</string>
+    <string name="title_activity_invoiced">Invoiced</string>
 </resources>

@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:layout_marginBottom="12dp"
     android:background="@color/white"
-    tools:context=".SignIn">
+    tools:context=".SignUp">
 
 
     <LinearLayout
@@ -41,18 +41,56 @@
             android:text="Login to continue showing information"/>
 
 
+
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="90.1dp"
             android:layout_marginLeft="28.7dp"
             android:layout_marginRight="28.9dp"
+            android:layout_marginTop="25dp"
             app:cardElevation="1dp"
             app:cardCornerRadius="6dp"
             app:cardBackgroundColor="@color/white">
 
             <LinearLayout
                 android:id="@+id/linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/rect"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_marginTop="6dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_profile"/>
+
+                <customfonts.EditText__SF_Pro_Display_Light
+                    android:background="#00000000"
+                    android:layout_marginLeft="10dp"
+                    android:hint="Name"
+                    android:id="@+id/name"
+                    android:textColorHint="#000000"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28.7dp"
+            android:layout_marginRight="28.9dp"
+            android:layout_marginTop="19.2dp"
+            app:cardElevation="1dp"
+            app:cardCornerRadius="6dp"
+            app:cardBackgroundColor="@color/white">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -122,18 +160,46 @@
 
         </android.support.v7.widget.CardView>
 
-
-        <customfonts.MyTextView_SF_Pro_Display_Light
-            android:layout_gravity="right"
-            android:layout_marginTop="19.2dp"
-            android:layout_marginRight="28.9dp"
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Forgot password?"
-            android:textColor="#606470"
-            android:textSize="15.4sp"/>
+            android:layout_marginTop="19.2dp"
+            android:layout_marginLeft="28.7dp"
+            android:layout_marginRight="28.9dp"
+            app:cardElevation="1dp"
+            app:cardCornerRadius="6dp"
+            app:cardBackgroundColor="@color/white">
 
 
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/rect"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_marginTop="6dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/lock"/>
+
+                <customfonts.EditText__SF_Pro_Display_Light
+                    android:background="#00000000"
+                    android:layout_marginLeft="10dp"
+                    android:hint="Reapet Password"
+                    android:id="@+id/rpassword"
+                    android:inputType="textPassword"
+                    android:textColorHint="#000000"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
         <customfonts.MyTextView_Roboto_Regular
             android:layout_gravity="center"
             android:gravity="center"
@@ -142,8 +208,8 @@
             android:layout_marginRight="28.9dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Log In"
-            android:id="@+id/login"
+            android:text="Sign Up"
+            android:id="@+id/signup"
             android:background="@drawable/rect_blue"
             android:textColor="#fbfbfb"
             android:textSize="15.4sp"/>
@@ -155,7 +221,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:paddingBottom="15dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -166,7 +231,7 @@
             android:textColor="#606470"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New User?" />
+            android:text="Already User?" />
 
         <customfonts.MyTextView_SF_Pro_Display_Medium
             android:layout_gravity="center"
@@ -174,9 +239,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15.4sp"
-            android:id="@+id/signup"
+            android:id="@+id/signin"
             android:textColor="#3277d8"
-            android:text="Sign up for a new account" />
+            android:text="Sign in for a existing account" />
 
     </LinearLayout>
 </RelativeLayout>

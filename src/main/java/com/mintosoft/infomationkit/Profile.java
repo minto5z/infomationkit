@@ -6,11 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mintosoft.infomationkit.api.BaseApiService;
 import com.mintosoft.infomationkit.api.UtilsApi;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,6 +30,7 @@ public class Profile extends AppCompatActivity {
     public static final String PREFS_NAME = "LoginPrefs";
     Call<ResponseBody> call;
     JSONObject jsonRESULTS;
+    ImageView profileImage;
     TextView tvName,tvEmail,tvDesignation,tvFatherName,tvMotherName,tvMobileNumber,tvContactNumber,tvNid,tvCompany,tvDistrict;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class Profile extends AppCompatActivity {
         final String restoredText = "Bearer " + prefs.getString("access_token", null);
 
         tvName =findViewById(R.id.name);
+        profileImage =findViewById(R.id.profile);
         tvEmail =findViewById(R.id.email);
         tvDesignation =findViewById(R.id.designation);
         tvFatherName =findViewById(R.id.father);
@@ -67,6 +71,9 @@ public class Profile extends AppCompatActivity {
                         String nid = (String) jsonRESULTS.getString("nid");
                         String company_name = (String) jsonRESULTS.getString("company_name");
                         String district_name = (String) jsonRESULTS.getString("district_name");
+                        String proImage = (String) jsonRESULTS.getString("image");
+
+                        Picasso.get().load(proImage).into(profileImage);
                         tvName.setText(name);
                         tvEmail.setText(email);
                         tvDesignation.setText(designation);

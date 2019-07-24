@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".WorkerReport"
-    tools:showIn="@layout/activity_worker_report">
+    tools:context="com.mintosoft.infomationkit.Received"
+    tools:showIn="@layout/activity_received">
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView1"
@@ -20,6 +20,4 @@
             android:layout_height="match_parent"
             table:tableView_columnCount="2" />
     </HorizontalScrollView>
-
-
 </LinearLayout>

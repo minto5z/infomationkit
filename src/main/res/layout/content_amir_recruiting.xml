@@ -6,9 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".MainActivity"
-    tools:showIn="@layout/app_bar_main">
-
+    tools:context="com.mintosoft.infomationkit.AmirRecruiting"
+    tools:showIn="@layout/activity_amir_recruiting">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,20 +18,23 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
+            android:onClick="onClick"
             android:gravity="center"
-            android:id="@+id/amit_p"
+            android:id="@+id/acardview"
             android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:background="@drawable/background"
-                android:scaleType="center"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Amir Processing" />
+                android:text="1"
+                android:id="@+id/atextview1"
+                android:textSize="50dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Waiting" />
 
         </LinearLayout>
 
@@ -43,60 +45,67 @@
             android:background="@android:color/darker_gray"></View>
 
         <LinearLayout
+            android:id="@+id/acardview1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:id="@+id/amit_r"
+            android:onClick="onClick"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:background="@drawable/background"
-                android:scaleType="center"/>
+            <TextView
+                android:id="@+id/atextview2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="50dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Amir Recruiting" />
+                android:text="Okala" />
 
         </LinearLayout>
 
     </LinearLayout>
 
     <View
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="0.002"
-    android:background="@android:color/darker_gray"
-    >
-</View>
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.002"
+        android:background="@android:color/darker_gray"
+        >
+    </View>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5">
 
+
+
         <LinearLayout
+            android:id="@+id/acardview2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:id="@+id/rubel_p"
+            android:onClick="onClick"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:src="@drawable/icon"
-                android:scaleType="center"
-                />
+            <TextView
+                android:id="@+id/atextview3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="50dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rubel Processing" />
+                android:text="Visa" />
 
         </LinearLayout>
         <View
@@ -111,25 +120,27 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:id="@+id/rubel_r"
+            android:onClick="onClick"
+            android:id="@+id/acardview3"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:scaleType="center"
-                android:src="@drawable/icon" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:id="@+id/atextview4"
+                android:textSize="50dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rubel Recruiting" />
+                android:text="Man Power" />
 
         </LinearLayout>
 
     </LinearLayout>
-
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -143,25 +154,29 @@
         android:layout_weight="0.5">
 
         <LinearLayout
+            android:id="@+id/acardview4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:id="@+id/invoice"
+            android:onClick="onClick"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:src="@drawable/invoice"
-                android:scaleType="center"/>
+            <TextView
+                android:id="@+id/atextview5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="50dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Invoice" />
+                android:text="Dileverd" />
 
         </LinearLayout>
+
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -174,19 +189,22 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:id="@+id/receive"
+            android:onClick="onClick"
+            android:id="@+id/acardview5"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:src="@drawable/paid"
-                android:scaleType="center"/>
+            <TextView
+                android:id="@+id/atextview6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="50dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Received" />
+                android:text="Completed" />
 
         </LinearLayout>
 
@@ -198,36 +216,4 @@
         android:background="@android:color/darker_gray"
         >
     </View>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:weightSum="3"
-        android:orientation="vertical"
-        android:layout_weight="0.2">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:id="@+id/total_receive"
-            android:gravity="center"
-            android:text="total_paid"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:id="@+id/total_invoice"
-            android:text="total_invoice"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:id="@+id/total_due"
-            android:text="total_due"
-            />
-    </LinearLayout>
 </LinearLayout>

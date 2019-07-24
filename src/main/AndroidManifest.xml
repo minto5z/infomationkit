@@ -9,7 +9,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:testOnly="false"
         android:theme="@style/AppTheme">
@@ -47,6 +47,43 @@
         <activity
             android:name=".AmitProcessing"
             android:label="@string/title_activity_amit_processing"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mintosoft.infomationkit.MainActivity" />
+        </activity>
+        <activity android:name=".SignUp" />
+        <activity
+            android:name=".AmirRecruiting"
+            android:label="@string/title_activity_amir_recruiting"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mintosoft.infomationkit.MainActivity" />
+        </activity>
+        <activity
+            android:name=".RubelProcessing"
+            android:label="@string/title_activity_rubel_processing"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mintosoft.infomationkit.MainActivity" />
+        </activity>
+        <activity
+            android:name=".RubelRecruiting"
+            android:label="@string/title_activity_rubel_recruiting"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mintosoft.infomationkit.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Received"
+            android:label="@string/title_activity_received"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme">
             <meta-data
