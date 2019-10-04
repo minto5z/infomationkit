@@ -25,7 +25,6 @@ public interface BaseApiService {
     @POST("forgot-password")
     Call<ResponseBody> forgotpassword(@Field("email") String email);
 
-    // Fungsi ini untuk memanggil API http://10.0.2.2/mahasiswa/register.php
     @FormUrlEncoded
     @POST("registers")
     Call<ResponseBody> registerRequest(@Field("name") String name,

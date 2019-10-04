@@ -3,6 +3,7 @@ package com.mintosoft.rubelgroup;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -58,8 +59,16 @@ public class ForgotPassword extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                 if (response.isSuccessful()) {
-                                    Log.d("SignIn.this", "=============> successful");
-                                    Toast.makeText(mContext, "Check mail to follow instruction", Toast.LENGTH_SHORT).show();
+                                    String[] strArray = new String[]{email};
+                                    if (email.charAt(0) == '0' && email.charAt(1) == '1') {
+                                        Log.d("SignIn.this", "============1111111111111111111111=> successful");
+                                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://demo.rubelgroup.com.bd/code-submit?mobile=" + email));
+                                        startActivity(intent);
+                                        finish();
+                                    } else {
+                                        Log.d("SignIn.this", "=============> successful");
+                                        Toast.makeText(mContext, "Check mail to follow instruction", Toast.LENGTH_SHORT).show();
+                                    }
                                 } else {
                                     Toast.makeText(mContext, "Please enter your valid input", Toast.LENGTH_SHORT).show();
                                 }
