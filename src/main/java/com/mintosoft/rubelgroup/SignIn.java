@@ -1,4 +1,4 @@
-package com.mintosoft.infomationkit;
+package com.mintosoft.rubelgroup;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,8 +10,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mintosoft.infomationkit.api.BaseApiService;
-import com.mintosoft.infomationkit.api.UtilsApi;
+import com.mintosoft.rubelgroup.api.BaseApiService;
+import com.mintosoft.rubelgroup.api.UtilsApi;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,7 +25,7 @@ import retrofit2.Response;
 
 public class SignIn extends Activity {
 
-    TextView em, ps, signin,signup;
+    TextView em, ps, signin,signup,fp;
     String email, password;
     Context mContext;
     //SessionManager session;
@@ -40,6 +40,7 @@ public class SignIn extends Activity {
         mApiService = UtilsApi.getAPIService();
         em = findViewById(R.id.email);
         ps = findViewById(R.id.password);
+        fp = findViewById(R.id.forgotpassword);
         signin = findViewById(R.id.login);
         signup = findViewById(R.id.signup);
         signup.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +54,13 @@ public class SignIn extends Activity {
             Intent intent = new Intent(SignIn.this, MainActivity.class);
             startActivity(intent);
         }
+
+        fp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignIn.this,ForgotPassword.class));
+            }
+        });
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

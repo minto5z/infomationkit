@@ -1,4 +1,4 @@
-package com.mintosoft.infomationkit;
+package com.mintosoft.rubelgroup;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mintosoft.infomationkit.api.BaseApiService;
-import com.mintosoft.infomationkit.api.UtilsApi;
+import com.mintosoft.rubelgroup.api.BaseApiService;
+import com.mintosoft.rubelgroup.api.UtilsApi;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,7 +23,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RubelRecruiting extends AppCompatActivity {
+public class AmitProcessing extends AppCompatActivity {
 
     public static final String PREFS_NAME = "LoginPrefs";
 
@@ -36,7 +36,7 @@ public class RubelRecruiting extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rubel_recruiting);
+        setContentView(R.layout.activity_amit_processing);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mApiService = UtilsApi.getAPIService();
@@ -59,7 +59,7 @@ public class RubelRecruiting extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(RubelRecruiting.this, "Server is down", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AmitProcessing.this, "Server is down", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -83,22 +83,22 @@ public class RubelRecruiting extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.acardview:
-                sendData("rbl_r_okalawaiting");
+                sendData("amir_p_okalawaiting");
                 break;
             case R.id.acardview1:
-                sendData("rbl_r_okala");
+                sendData("amir_p_okala");
                 break;
             case R.id.acardview2:
-                sendData("rbl_r_visa");
+                sendData("amir_p_visa");
                 break;
             case R.id.acardview3:
-                sendData("rbl_r_manpower");
+                sendData("amir_p_manpower");
                 break;
             case R.id.acardview4:
-                sendData("rbl_r_delivery");
+                sendData("amir_p_delivery");
                 break;
             case R.id.acardview5:
-                sendData("rbl_r_completed");
+                sendData("amir_p_completed");
                 break;
         }
     }
@@ -131,7 +131,7 @@ public class RubelRecruiting extends AppCompatActivity {
                 DATA_TO_SHOW1[i][6] = jsonobject.getString("occupation");
 
                 String driving_licenec = "No";
-                if (jsonobject.getString("diving_licence_status") != null)
+                if (jsonobject.getString("diving_licence_status").equals("1"))
                     driving_licenec = jsonobject.getString("diving_licence_status");
                 DATA_TO_SHOW1[i][7] = driving_licenec;
 
@@ -246,7 +246,7 @@ public class RubelRecruiting extends AppCompatActivity {
                 DATA_TO_SHOW1[i][29] = account_date;
             }
 
-            Intent i = new Intent(RubelRecruiting.this, WorkerReport.class);
+            Intent i = new Intent(AmitProcessing.this, WorkerReport.class);
             Bundle mBundle = new Bundle();
             mBundle.putSerializable("list", DATA_TO_SHOW);
             mBundle.putSerializable("list1", DATA_TO_SHOW1);
@@ -268,29 +268,29 @@ public class RubelRecruiting extends AppCompatActivity {
                     try {
                         jsonRESULTS = new JSONObject(response.body().string());
 
-                        //------------------------------------rbl Processing--------------------------------------------------
+                        //------------------------------------Amir Processing--------------------------------------------------
 
-                        jo2 = jsonRESULTS.getJSONArray("rbl_r_okala");
+                        jo2 = jsonRESULTS.getJSONArray("amir_p_okala");
                         TextView atextview2 = findViewById(R.id.atextview2);
                         atextview2.setText(jo2.length()+"");
 
-                        jo2 = jsonRESULTS.getJSONArray("rbl_r_okalawaiting");
+                        jo2 = jsonRESULTS.getJSONArray("amir_p_okalawaiting");
                         TextView atextview1 = findViewById(R.id.atextview1);
                         atextview1.setText(jo2.length() + "");
 
-                        jo2 = jsonRESULTS.getJSONArray("rbl_r_visa");
+                        jo2 = jsonRESULTS.getJSONArray("amir_p_visa");
                         TextView atextview3 = findViewById(R.id.atextview3);
                         atextview3.setText(jo2.length()+"");
 
-                        jo2 = jsonRESULTS.getJSONArray("rbl_r_manpower");
+                        jo2 = jsonRESULTS.getJSONArray("amir_p_manpower");
                         TextView atextview4 = findViewById(R.id.atextview4);
                         atextview4.setText(jo2.length()+"");
 
-                        jo2 = jsonRESULTS.getJSONArray("rbl_r_delivery");
+                        jo2 = jsonRESULTS.getJSONArray("amir_p_delivery");
                         TextView atextview5 = findViewById(R.id.atextview5);
                         atextview5.setText(jo2.length()+"");
 
-                        jo2 = jsonRESULTS.getJSONArray("rbl_r_completed");
+                        jo2 = jsonRESULTS.getJSONArray("amir_p_completed");
                         TextView atextview6 = findViewById(R.id.atextview6);
                         atextview6.setText(jo2.length()+"");
 
@@ -300,7 +300,7 @@ public class RubelRecruiting extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(RubelRecruiting.this, "Server is down", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AmitProcessing.this, "Server is down", Toast.LENGTH_SHORT).show();
                 }
             }
 

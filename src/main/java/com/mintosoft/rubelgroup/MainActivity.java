@@ -1,12 +1,15 @@
-package com.mintosoft.infomationkit;
+package com.mintosoft.rubelgroup;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -16,8 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mintosoft.infomationkit.api.BaseApiService;
-import com.mintosoft.infomationkit.api.UtilsApi;
+import com.mintosoft.rubelgroup.api.BaseApiService;
+import com.mintosoft.rubelgroup.api.UtilsApi;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,7 +36,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     public static final String PREFS_NAME = "LoginPrefs";
-
+    private int sum = 0;
     BaseApiService mApiService;
     JSONObject jsonRESULTS;
     Call<ResponseBody> call;
@@ -107,15 +110,24 @@ public class MainActivity extends AppCompatActivity
 
                         String total_receive = jsonRESULTS.getString("total_receive");
                         TextView tv_total_receive = findViewById(R.id.total_receive);
-                        tv_total_receive.setText("Total Paid  : " + total_receive);
+                        tv_total_receive.setText("" + total_receive);
 
                         String total_invoice = jsonRESULTS.getString("total_invoice");
                         TextView tv_total_invoice = findViewById(R.id.total_invoice);
-                        tv_total_invoice.setText("Total Invoice  : " + total_invoice);
+                        tv_total_invoice.setText("" + total_invoice);
 
                         TextView tv_due = findViewById(R.id.total_due);
                         int due = Integer.parseInt(total_invoice)-Integer.parseInt(total_receive);
-                        tv_due.setText("Total Due : " +due);
+                        tv_due.setText("" +due);
+
+
+                        getAmount("invoices");
+                        TextView tvInvoice = (TextView)findViewById(R.id.t_invoice);
+                        tvInvoice.setText("Invoice \n"+sum);
+                        getAmount("receives");
+                        TextView tvReceive = (TextView)findViewById(R.id.t_receive);
+                        tvReceive.setText("Received \n"+sum);
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
@@ -169,140 +181,25 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-//    private void setData(String restoredText) {
-//
-//        Call<ResponseBody> call = mApiService.getLoginResponse(restoredText);
-//        call.enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//
-//                JSONArray jo2;
-//                if (response.isSuccessful()) {
-//                    try {
-//                        jsonRESULTS = new JSONObject(response.body().string());
-//
-//                        //------------------------------------ruble processing--------------------------------------------------
-//
-//                        jo2 = jsonRESULTS.getJSONArray("rbl_p_okala");
-//                        TextView rtextview2 = findViewById(R.id.rtextview2);
-//                        rtextview2.setText(jo2.length() + "\n" + "Okala");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("rbl_p_okalawaiting");
-//                        TextView rtextview1 = findViewById(R.id.rtextview1);
-//                        rtextview1.setText(jo2.length() + "\n" + "Waiting");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("rbl_p_visa");
-//                        TextView rtextview3 = findViewById(R.id.rtextview3);
-//                        rtextview3.setText(jo2.length() + "\n" + "Visa");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("rbl_p_manpower");
-//                        TextView rtextview4 = findViewById(R.id.rtextview4);
-//                        rtextview4.setText(jo2.length() + "\n" + "Man Power");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("rbl_p_delivery");
-//                        TextView rtextview5 = findViewById(R.id.rtextview5);
-//                        rtextview5.setText(jo2.length() + "\n" + "Dileverd");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("rbl_p_invoice");
-//                        TextView rtextview6 = findViewById(R.id.rtextview6);
-//                        rtextview6.setText(jo2.length() + "\n" + "Invoice");
-//
-//
-//                        //------------------------------------Ruble Recuiting--------------------------------------------------
-//
-//                        jo2 = jsonRESULTS.getJSONArray("rbl_r_okala");
-//                        TextView rrtextview2 = findViewById(R.id.rrtextview2);
-//                        rrtextview2.setText(jo2.length() + "\n" + "Okala");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("rbl_r_okalawaiting");
-//                        TextView rrtextview1 = findViewById(R.id.rrtextview1);
-//                        rrtextview1.setText(jo2.length() + "\n" + "Waiting");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("rbl_r_visa");
-//                        TextView rrtextview3 = findViewById(R.id.rrtextview3);
-//                        rrtextview3.setText(jo2.length() + "\n" + "Visa");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("rbl_r_manpower");
-//                        TextView rrtextview4 = findViewById(R.id.rrtextview4);
-//                        rrtextview4.setText(jo2.length() + "\n" + "Man Power");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("rbl_r_delivery");
-//                        TextView rrtextview5 = findViewById(R.id.rrtextview5);
-//                        rrtextview5.setText(jo2.length() + "\n" + "Dileverd");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("rbl_r_invoice");
-//                        TextView rrtextview6 = findViewById(R.id.rrtextview6);
-//                        rrtextview6.setText(jo2.length() + "\n" + "Invoice");
-//
-//
-//                        //------------------------------------Amir Processing--------------------------------------------------
-//
-//                        jo2 = jsonRESULTS.getJSONArray("amir_p_okala");
-//                        TextView atextview2 = findViewById(R.id.atextview2);
-//                        atextview2.setText(jo2.length() + "\n" + "Okala");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("amir_p_okalawaiting");
-//                        TextView atextview1 = findViewById(R.id.atextview1);
-//                        atextview1.setText(jo2.length() + "\n" + "Waiting");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("amir_p_visa");
-//                        TextView atextview3 = findViewById(R.id.atextview3);
-//                        atextview3.setText(jo2.length() + "\n" + "Visa");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("amir_p_manpower");
-//                        TextView atextview4 = findViewById(R.id.atextview4);
-//                        atextview4.setText(jo2.length() + "\n" + "Man Power");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("amir_p_delivery");
-//                        TextView atextview5 = findViewById(R.id.atextview5);
-//                        atextview5.setText(jo2.length() + "\n" + "Dileverd");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("amir_p_invoice");
-//                        TextView atextview6 = findViewById(R.id.atextview6);
-//                        atextview6.setText(jo2.length() + "\n" + "Invoice");
-//
-//                        //------------------------------------Amir Recuiting--------------------------------------------------
-//
-//                        jo2 = jsonRESULTS.getJSONArray("amir_r_okala");
-//                        TextView artextview2 = findViewById(R.id.artextview2);
-//                        artextview2.setText(jo2.length() + "\n" + "Okala");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("amir_r_okalawaiting");
-//                        TextView artextview1 = findViewById(R.id.artextview1);
-//                        artextview1.setText(jo2.length() + "\n" + "Waiting");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("amir_r_visa");
-//                        TextView artextview3 = findViewById(R.id.artextview3);
-//                        artextview3.setText(jo2.length() + "\n" + "Visa");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("amir_r_manpower");
-//                        TextView artextview4 = findViewById(R.id.artextview4);
-//                        artextview4.setText(jo2.length() + "\n" + "Man Power");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("amir_r_delivery");
-//                        TextView artextview5 = findViewById(R.id.artextview5);
-//                        artextview5.setText(jo2.length() + "\n" + "Dileverd");
-//
-//                        jo2 = jsonRESULTS.getJSONArray("amir_r_invoice");
-//                        TextView artextview6 = findViewById(R.id.artextview6);
-//                        artextview6.setText(jo2.length() + "\n" + "Invoice");
-//
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                } else {
-//                    Toast.makeText(MainActivity.this, "Server is down", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//
-//            }
-//        });
-//    }
+    public void getAmount(String url) {
+
+        sum = 0;
+        try {
+            JSONArray jo2 = jsonRESULTS.getJSONArray(url);
+
+            if (jo2 != null) {
+                //String[][] DATA_TO_SHOW = new String[jo2.length()][3];
+
+                for (int i = 0; i < jo2.length(); i++) {
+                    JSONObject jsonobject = jo2.getJSONObject(i);
+                    sum = sum +Integer.parseInt(jsonobject.getString("amount"));
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     @Override
@@ -313,6 +210,16 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.ThemeDialogCustom);
+        builder.setTitle("Are you sure you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        MainActivity.this.finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     @Override
@@ -353,6 +260,27 @@ public class MainActivity extends AppCompatActivity
             editor.remove("access_token");
             editor.commit();
             startActivity(new Intent(MainActivity.this, SignIn.class));
+        }
+        else if (id == R.id.share) {
+
+            Intent intent1 = new Intent();
+            intent1.setAction(Intent.ACTION_SEND);
+            intent1.setType("text/plain");
+            final String text = "Check out "
+                    + getResources().getString(R.string.app_name)
+                    + ", the free app for rubel group. https://play.google.com/store/apps/details?id="
+                    + getPackageName();
+            intent1.putExtra(Intent.EXTRA_TEXT, text);
+            Intent sender = Intent.createChooser(intent1, "Share " + getResources().getString(R.string.app_name));
+            startActivity(sender);
+        }
+        else if (id == R.id.rate_us) {
+
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
+            } catch (android.content.ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + getPackageName())));
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

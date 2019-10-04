@@ -1,4 +1,4 @@
-package com.mintosoft.infomationkit.api;
+package com.mintosoft.rubelgroup.api;
 
 /**
  * Created by fariz ramadhan.

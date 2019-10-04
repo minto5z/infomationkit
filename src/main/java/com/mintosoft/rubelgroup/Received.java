@@ -1,11 +1,8 @@
-package com.mintosoft.infomationkit;
+package com.mintosoft.rubelgroup;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import de.codecrafters.tableview.TableView;
 import de.codecrafters.tableview.model.TableColumnDpWidthModel;

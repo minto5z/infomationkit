@@ -1,4 +1,4 @@
-package com.mintosoft.infomationkit;
+package com.mintosoft.rubelgroup;
 
 import org.junit.Test;
 

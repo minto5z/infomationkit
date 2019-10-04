@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.mintosoft.infomationkit.RubelRecruiting"
+    tools:context="com.mintosoft.rubelgroup.RubelRecruiting"
     tools:showIn="@layout/activity_rubel_recruiting">
 
     <LinearLayout

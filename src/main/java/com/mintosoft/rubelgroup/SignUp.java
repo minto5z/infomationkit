@@ -1,4 +1,4 @@
-package com.mintosoft.infomationkit;
+package com.mintosoft.rubelgroup;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mintosoft.infomationkit.api.BaseApiService;
-import com.mintosoft.infomationkit.api.UtilsApi;
+import com.mintosoft.rubelgroup.api.BaseApiService;
+import com.mintosoft.rubelgroup.api.UtilsApi;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

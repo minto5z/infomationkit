@@ -1,4 +1,4 @@
-package com.mintosoft.infomationkit.api;
+package com.mintosoft.rubelgroup.api;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -20,6 +20,10 @@ public interface BaseApiService {
     @POST("login")
     Call<ResponseBody> loginRequest(@Field("email") String email,
                                     @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("forgot-password")
+    Call<ResponseBody> forgotpassword(@Field("email") String email);
 
     // Fungsi ini untuk memanggil API http://10.0.2.2/mahasiswa/register.php
     @FormUrlEncoded

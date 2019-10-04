@@ -1,4 +1,4 @@
-package com.mintosoft.infomationkit;
+package com.mintosoft.rubelgroup;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

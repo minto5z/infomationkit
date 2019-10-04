@@ -1,4 +1,4 @@
-package com.mintosoft.infomationkit.model;
+package com.mintosoft.rubelgroup.model;
 
 public class login {
     String email;
